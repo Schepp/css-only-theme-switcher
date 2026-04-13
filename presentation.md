@@ -1,4 +1,4 @@
-## Turning CSS Carousels into a Theme Switcher
+# Turning CSS Carousels into a Theme Switcher
 
 Christian "Schepp" Schaefer
 
@@ -13,7 +13,7 @@ Christian "Schepp" Schaefer
 <p style="width: fit-content; text-align: left; anchor-name: --iframe-original-text-1"><strong><a href="https://the-web-you-want.org">The Web You Want</a></strong> is a conference happening in Amsterdam right after Smashing Conf.</p>
 
 <p class="fragment zengarden" style="width: fit-content; text-align: left; anchor-name: --iframe-original-text-2">
-  <strong>They invited people to submit custom CSS themes</strong> - very much in the spirit of the <a href="https://csszengarden.com">CSS Zen Garden</a> (Dave Shea also spoke at a Smashing Conf not too long ago)
+  <strong>They invited people to submit custom CSS themes</strong> - very much in the spirit of the <a href="https://csszengarden.com">CSS Zen Garden</a>
 </p>
 
 <br>
@@ -81,16 +81,16 @@ That last detail became important later 😏
 
 Given the name of the conference being   
 
-_"The Web You Want"_   
+#### "The Web You Want" 
 
-I wanted the theme to feel:
+I wanted the theme to feel…
 
 - optimistic
 - nature-inspired 🌱
 - maybe solarpunk-ish?
 - visually deep, but still playful
 
-So I set out to build the whole thing around a bright spring landscape. <!-- .element: class="fragment" -->
+So I set out to build the whole thing around a bright spring landscape. 🌹🌿 <!-- .element: class="fragment" -->
 
 ---
 
@@ -102,7 +102,7 @@ So I set out to build the whole thing around a bright spring landscape. <!-- .el
 
 <li class="fragment">
   <div style="anchor-name: --shutterstock">
-    <a href="https://www.shutterstock.com/de/image-vector/sky-blue-cloud-spring-backgroundnature-landscape-2602082071">spring landscape vector from Shutterstock</a>
+    <a href="https://www.shutterstock.com/de/image-vector/sky-blue-cloud-spring-backgroundnature-landscape-2602082071">spring landscape vector graphic from Shutterstock</a>
   </div>
   
   <img src="./images/landscape.svg" style="position: absolute; bottom: 110%; left: 0; width: 300px; height: auto; max-width: none; max-height: none; overflow: clip; border-radius: 4px; anchor-name: --shutterstock-preview">
@@ -151,24 +151,6 @@ So I set out to build the whole thing around a bright spring landscape. <!-- .el
 </ul>
 
 </div>
-
----
-
-### Why slice the artwork into parts?
-
-Because a single flat illustration would have been too rigid.
-
-Separate SVG layers let me:
-
-- reposition pieces responsively
-- stack foreground and background imagery
-- create a fake sense of depth
-
-<img src="./images/landscape-top-part.svg" class="transparent-checkered" style="position: absolute; top: 100%; left: 0; width: 300px; height: auto; max-width: none; max-height: none;">
-
-<img src="./images/landscape-clouds.svg" class="transparent-checkered" style="position: absolute; top: 100%; left: calc(50% - 150px); width: 300px; height: auto; max-width: none; max-height: none;">
-
-<img src="./images/landscape-bottom-part.svg" class="transparent-checkered" style="position: absolute; top: 100%; right: 0; width: 300px; height: auto; max-width: none; max-height: none;">
 
 ---
 
@@ -234,11 +216,6 @@ box-shadow:
 </ul>
 
 </div>
-
----
-<!-- .slide: data-background="#fff" -->
-
-<iframe data-src="./stages/assembled/index.html" data-preload class="iframe-assembled"></iframe>
 
 ---
 
@@ -333,7 +310,7 @@ I needed real interactive affordances.
 
 ---
 
-### Then I remembered CSS carousels 💡
+### Then I remembered CSS carousels
 
 <div class="r-hstack" style="gap: 40px">
 
@@ -341,12 +318,12 @@ I needed real interactive affordances.
 
 <div style="flex: 1 1 60%; text-align: left">
 
-The Chrome team's proposal can generate [carousel controls in CSS](https://developer.chrome.com/blog/carousels-with-css), including:
+The [Chrome team's proposal]((https://developer.chrome.com/blog/carousels-with-css)) can generate carousel controls **in pure CSS**, including:
 
 - scroll buttons (⬅ previous / next ⮕)
 - scroll markers (dots ⚪️ ⚪️ ⚪️ )
 
-And those controls are actually interactive!
+And those controls \*are\* actually interactive!
 
 </div>
 </div>
@@ -376,7 +353,7 @@ And those controls are actually interactive!
 
   </li>
 
-  <li class="fragment">Add scroll buttons:
+  <li class="fragment">Add scroll-buttons:
 
 ```css
 .carousel {
@@ -423,11 +400,11 @@ And those controls are actually interactive!
 
 ### The plan
 
-Can I build a **fake scroller** and then use its generated scroll markers as a theme switcher?
+Can I build a **fake scroller** and then use its generated **scroll markers** as a theme switcher?
 
 ---
 
-### Task: find a scroller 🔍
+### Task: find a scroller candidate 🔍
 
 I needed an **unused element** with **at least 3 children**, that I could turn into a scroller…
 
@@ -451,9 +428,7 @@ That element was: `<head>` !
 
 ### Yes, `<head>` and `<meta>` can be rendered
 
-It is not rendered by default.
-
-But CSS can change that:
+They are not rendered by default, but CSS can change that:
 
 <div class="r-hstack">
 
@@ -596,13 +571,13 @@ Because `:has()` cannot inspect pseudo-elements like `::scroll-marker`
 
 If I cannot query the generated marker, maybe I can query **what the marker does**?
 
-What it does is simple: it scrolls the fake scroller.
+What it does is simple: it scrolls the fake scroller. <!-- .element: class="fragment" -->
 
 <div class="fragment">
 
 And scroll position is something CSS \*can\* react to.
 
-Enter **Scroll Driven Animations API**.
+Enter **Scroll Driven Animations API**. ✨
 
 </div>
 
@@ -610,7 +585,7 @@ Enter **Scroll Driven Animations API**.
 
 ### Turning scroll position into an animation timeline
 
-I promoted the `head` to a scroll timeline which can be used to drive CSS animations.
+I promoted the `head` to a **scroll timeline** which can be used to drive CSS animations.
 
 ```css
 head {
@@ -672,7 +647,7 @@ body::before {
 
 ### Animate a custom property
 
-But I did not animate a visual property, I animated a CSS Custom Property:
+Instead of animating a visual property, I animated a CSS Custom Property:
 
 <div class="r-hstack">
 
@@ -726,15 +701,18 @@ No DOM changes. No script.
 
 ### One final problem
 
-Now I had a custom property called `--scheme` that flips between the values `--light` and `--dark`.
+Now I had this custom property called `--scheme` that flips between the values `--light` and `--dark`.
 
 But how do I *consume* it declaratively?
 
 This is where another modern CSS feature entered the stage.
 
 ---
+<!-- .slide: class="style-queries" -->
 
-### Style queries
+### Style queries ✨
+
+Style queries are a special form of container queries that react to custom property values.
 
 ```css
 html {
@@ -782,16 +760,14 @@ A theme switcher built from:
 - animated custom properties
 - style queries
 
-Which is a sentence that sounds made up, but happens to be true.
+Which is a sentence that sounds made up, but happens to be true. 😀
+
+---
+<!-- .slide: data-background-color="#fff" data-background-image="./images/fronteers-dark-mode.jpg" class="fronteers-dark-mode" -->
 
 ---
 
 ### Thanks!
 
-A fun hack.
-
-A slightly cursed hack.
-
-But a very enjoyable one.
-
-![](./images/qrcode.svg) <!-- .element: style="width: 20vmax; height: 20vmax" -->
+![](./images/qrcode.svg) <!-- .element: style="width: 20vmax; height: 20vmax" -->  
+[bit.ly/css-switch](https://bit.ly/css-switch) <!-- .element: style="font-size: 1.5em" -->

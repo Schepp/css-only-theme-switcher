@@ -217,6 +217,7 @@
   background-color: #ffe6bb;
   box-shadow: inset 0 0 4px #fd9d1b;
   font-size: 0.9em !important;
+  font-weight: normal;
   -webkit-hyphens: none;
   -moz-hyphens: none;
   -ms-hyphens: none;
@@ -497,7 +498,8 @@ body::after {
   height: auto;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0ms;
+  transition-property: transform, opacity;
+  transition-duration: 0ms;
   filter: drop-shadow(0 0 2px var(--color-celestial-body));
 }
 
@@ -505,15 +507,18 @@ body::before {
   z-index: 1;
   content: url('../images/landscape-top-part.svg');
   top: 0;
+  transform: translateY(-33vh);
 }
 
 body::after {
   content: url('../images/landscape-bottom-part.svg');
   bottom: -17.5%;
+  transform: translateY(33vh);
 }
 
 body:has(.present .fragment.landscape.visible)::before,
 body:has(.present .fragment.landscape.visible)::after {
+  transform: translateY(0);
   opacity: 1;
   transition-duration: 300ms;
 }
@@ -532,17 +537,19 @@ body:has(.present .fragment.landscape.visible)::after {
   left: 70vw;
   width: 20vmax;
   height: 20vmax;
+  transform: translate(50%, 0);
   background-color: var(--color-celestial-body);
   border-radius: 50%;
   box-shadow: 0 0 1vmax var(--color-celestial-glow), 0 0 50vmax var(--color-celestial-glow), 0 0 35vmax var(--color-celestial-glow);
   opacity: 0;
   font-size: 0;
-  transition: transform 300ms;
+  transition-property: transform, opacity;
+  transition-duration: 300ms;
 }
 
 :root:has(.present .fragment.light.visible)::before {
+  transform: translate(0, 0);
   opacity: 1;
-  transition-duration: 300ms;
 }
 
 :root::after {
@@ -551,25 +558,32 @@ body:has(.present .fragment.landscape.visible)::after {
   left: 0;
   width: 100vw;
   height: auto;
-  translate: 0 -50%;
+  transform: translate(-50%, -50%);
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0ms;
+  transition-property: transform, opacity;
+  transition-duration: 0ms;
 }
 
 :root:has(.present .fragment.clouds.visible)::after {
+  transform: translate(0, -50%);
   opacity: 1;
   transition-duration: 300ms;
 }
 
-:root:not(#specificity-increase):has(.present[data-background="#fff"]) {
+:root:not(#specificity-increase):has(.present[data-background="#fff"]),
+:root:not(#specificity-increase):has(.present[data-background-color="#fff"]) {
   --presentation-bg-color: #fff;
 }
 
 :root:not(#specificity-increase):has(.present[data-background="#fff"])::before,
 :root:not(#specificity-increase):has(.present[data-background="#fff"])::after,
 body:not(#specificity-increase):has(.present[data-background="#fff"])::before,
-body:not(#specificity-increase):has(.present[data-background="#fff"])::after {
+body:not(#specificity-increase):has(.present[data-background="#fff"])::after,
+:root:not(#specificity-increase):has(.present[data-background-color="#fff"])::before,
+:root:not(#specificity-increase):has(.present[data-background-color="#fff"])::after,
+body:not(#specificity-increase):has(.present[data-background-color="#fff"])::before,
+body:not(#specificity-increase):has(.present[data-background-color="#fff"])::after {
   opacity: 0;
   transition-duration: 0ms;
 }
@@ -578,9 +592,9 @@ body:not(#specificity-increase):has(.present[data-background="#fff"])::after {
   --presentation-bg-color: #001c40;
   --r-main-color: #ddd;
   --r-heading-color: var(--r-main-color);
-  --r-link-color: #21a652;
+  --r-link-color-hover: #21a652;
   --r-link-color-dark: #3cc26d;
-  --r-link-color-hover: #2be06d;
+  --r-link-color: #2be06d;
   --r-selection-background-color: #2be06d;
 }
 
@@ -646,10 +660,7 @@ body:not(#specificity-increase):has(.present.dark, .past.dark) img[src^="https:/
 }
 
 .r-hstack.r-hstack > li {
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
-  height: 100%;
+  list-style-position: inside;
   margin: 0;
 }
 
@@ -776,6 +787,115 @@ html {
   animation-fill-mode: both;
   animation-timing-function: linear;
   animation-timeline: --head-timeline;
+}
+
+@keyframes theme {
+  from { --scheme: auto }
+  50% { --scheme: light }
+  to { --scheme: dark }
+}
+
+:root:not(#specificity-increase#specificity-increase):has(.present.style-queries, .past.style-queries) {
+  --scheme: auto;
+
+  animation-name: theme;
+  animation-duration: 1ms;
+  animation-fill-mode: both;
+  animation-timing-function: steps(3);
+  animation-timeline: --head-timeline;
+}
+
+body:not(#specificity-increase#specificity-increase):has(.present.style-queries, .past.style-queries) {
+  @container style(--scheme: light) {
+    --presentation-bg-color: var(--color-sky);
+    --r-main-color: var(--r-main-color);
+    --r-heading-color: var(--r-heading-color);
+    --r-link-color: #177339;
+    --r-link-color-dark: #2c8f51;
+    --r-link-color-hover: #21ad55;
+    --r-selection-background-color: #4ee184;
+  }
+
+  @container style(--scheme: dark) {
+    --presentation-bg-color: #001c40;
+    --r-main-color: #ddd;
+    --r-heading-color: var(--r-main-color);
+    --r-link-color-hover: #21a652;
+    --r-link-color-dark: #3cc26d;
+    --r-link-color: #2be06d;
+    --r-selection-background-color: #2be06d;
+  }
+}
+
+:root:not(#specificity-increase#specificity-increase):has(.present.style-queries, .past.style-queries)::before {
+  @container style(--scheme: light) {
+    --color-celestial-glow: #333333;
+    content: 'A bright, stylized landscape with rolling green hills, trees, and a large light in the sky. Decorative drop caps begin the paragraphs.';
+    background-image: none;
+    filter: drop-shadow(0 0 2px var(--color-celestial-body));
+  }
+
+  @container style(--scheme: dark) {
+    --color-celestial-glow: #333333;
+    content: 'A nighttime illustration with rolling hills, silhouetted trees, and a large glowing dark in a deep blue sky. Decorative drop caps begin the paragraphs.';
+    background-image: radial-gradient(circle at 60% 60%, transparent 50%, rgba(255, 255, 255, 1) 120%),
+    radial-gradient(circle at 40% 40%, transparent 50%, rgba(0, 0, 0, 1) 110%),
+    radial-gradient(circle at top left, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.75) 100%),
+    radial-gradient(circle at bottom, rgba(10, 35, 66, 0.4) 30%, transparent 70%),
+    radial-gradient(circle at bottom, rgba(40, 62, 81, 0.15) 0%, rgba(10, 35, 66, 0.2) 100%),
+    radial-gradient(circle at top left, rgba(171, 227, 255, 0.75) 0%, rgba(0, 0, 0, 0.5) 90%),
+    linear-gradient(to left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.1) 100%);
+    background-size: 180%, 100%, 100%, 100%, 100%, 100%, 100%;
+    background-position: 50%, 50%, 50%, 50%, 50%, 50%, 50%;
+    filter: invert(1) brightness(0.7);
+  }
+}
+
+:root:not(#specificity-increase#specificity-increase):has(.present.style-queries, .past.style-queries)::after {
+  @container style(--scheme: light) {
+    filter: drop-shadow(0 0 2px var(--color-celestial-body));
+  }
+
+  @container style(--scheme: dark) {
+    filter: brightness(0.35) contrast(1.5);
+  }
+}
+
+body:not(#specificity-increase#specificity-increase):has(.present.style-queries, .past.style-queries)::before,
+body:not(#specificity-increase#specificity-increase):has(.present.style-queries, .past.style-queries)::after {
+  @container style(--scheme: light) {
+    filter: drop-shadow(0 0 2px var(--color-celestial-body));
+  }
+
+  @container style(--scheme: dark) {
+    filter: sepia(0.25) hue-rotate(147deg) brightness(0.25) drop-shadow(-1px -1px 2px rgba(255, 255, 255, 0.5));
+  }
+}
+
+:root:not(#specificity-increase#specificity-increase):has(.present.style-queries, .past.style-queries) meta::scroll-marker {
+  @container style(--scheme: light) {
+    filter: none;
+  }
+
+  @container style(--scheme: dark) {
+    filter: invert(1);
+  }
+}
+
+:root:not(#specificity-increase#specificity-increase):has(.present.style-queries, .past.style-queries) meta::scroll-marker:target-current {
+  @container style(--scheme: light) {
+    background-color: #fff;
+    filter: invert(1);
+  }
+
+  @container style(--scheme: dark) {
+    background-color: #fff;
+  }
+}
+
+:root:not(#specificity-increase):has(.present.fronteers-dark-mode, .past.fronteers-dark-mode) > head::scroll-marker-group,
+:root:not(#specificity-increase):has(.present.fronteers-dark-mode, .past.fronteers-dark-mode) > head::scroll-marker-group {
+  display: none;
 }
 
 
