@@ -64,21 +64,6 @@ Style an existing page however you like. But:
 
 ---
 
-### The source material
-
-The supplied page already had a solid semantic structure:
-
-- `<header>`
-- `<main>`
-- `<section>`
-- `<aside>`
-- `<footer>`
-- a few `<meta>` elements inside `<head>`
-
-That last detail became important later 😏
-
----
-
 ### First idea
 
 Given the name of the conference being   
@@ -211,10 +196,6 @@ box-shadow:
   <div class="link light-link"></div>
 </li>
 
-<li class="fragment fonts">
-   and adding the fonts
-</li>
-
 </ul>
 
 </div>
@@ -248,7 +229,7 @@ So I created a second scheme:
 
 - darker sky
 - moon instead of sun
-- filtered landscape layers
+- blueish landscape with moonshine
 - adjusted contrast and glow
 
 ---
@@ -402,7 +383,7 @@ And those controls \*are\* actually interactive!
 
 ### The plan
 
-Can I build a **fake scroller** and then use its generated **scroll markers** as a theme switcher?
+Can I build a **fake scroller** and then use its **scroll markers** as a theme switcher?
 
 ---
 
@@ -573,7 +554,7 @@ Because `:has()` cannot inspect pseudo-elements like `::scroll-marker`
 
 ### Time for a detour
 
-If I cannot query the generated marker, maybe I can query **what the marker does**?
+If I cannot query the generated markers, maybe I can query **what the marker does**?
 
 What it does is simple: it scrolls the fake scroller. <!-- .element: class="fragment" -->
 
@@ -684,30 +665,11 @@ html {
 
 ---
 
-### What I had now
-
-A three-step state machine:
-
-- position 1 → Auto
-- position 2 → Light
-- position 3 → Dark
-
-All encoded in:
-
-- a hidden scroller
-- generated scroll markers
-- a scroll-driven animation
-- a custom property
-
-No DOM changes. No script.
-
----
-
 ### One final problem
 
 Now I had this custom property called `--scheme` that flips between the values `--light` and `--dark`.
 
-But how do I *consume* it declaratively?
+But how do I *consume* it?
 
 This is where another modern CSS feature entered the stage.
 
