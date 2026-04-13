@@ -696,32 +696,12 @@ That pattern repeats throughout the stylesheet.
 
 ---
 
-### Same trick on the landscape layers
-
-```css
-html::before,
-html::after {
-  filter: drop-shadow(0 0 2px #fff);
-
-  @container style(--scheme: dark) {
-    filter: sepia(0.25)
-            hue-rotate(147deg)
-            brightness(0.25)
-            drop-shadow(-1px -1px 2px rgba(255, 255, 255, 0.5));
-  }
-}
-```
-
-That is what makes the scene turn into its night version.
-
----
-
 ### The result
 
 A theme switcher built from:
 
-- CSS-generated marker controls
 - a bogus scroller on `<head>`
+- CSS-generated marker controls
 - scroll-driven animations
 - animated custom properties
 - style queries
