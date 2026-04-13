@@ -1,4 +1,4 @@
-Turning CSS Carousels into a Theme Switcher
+Turning a CSS Carousel into a Theme Switcher
 ======
 
 - [Slides](https://schepp.github.io/css-only-theme-switcher/)

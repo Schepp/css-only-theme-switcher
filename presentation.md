@@ -715,6 +715,8 @@ If you enjoyed this…
 ---
 <!-- .slide: data-background-color="#fff" data-background-image="./images/fronteers-dark-mode.jpg" class="fronteers-dark-mode" -->
 
+<a href="https://fronteersconf.org" target="_blank">Fronteers Dark Mode 2026</a>
+
 ---
 
 ### Thanks!

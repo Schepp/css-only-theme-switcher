@@ -915,3 +915,14 @@ body:not(#specificity-increase#specificity-increase):has(.present.style-queries,
   border-radius: 50%;
 }
 
+.fronteers-dark-mode .slide-background-content   {
+  background-size: contain;
+}
+
+.fronteers-dark-mode a {
+  display: block;
+  width: var(--slide-width);
+  height: var(--slide-height);
+  opacity: 0;
+}
+
