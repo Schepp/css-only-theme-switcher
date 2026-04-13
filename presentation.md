@@ -710,7 +710,7 @@ Which is a sentence that sounds made up, but happens to be true. 😀
 
 ---
 
-If you likes this…
+If you enjoyed this…
 
 ---
 <!-- .slide: data-background-color="#fff" data-background-image="./images/fronteers-dark-mode.jpg" class="fronteers-dark-mode" -->
