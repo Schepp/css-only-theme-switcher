@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="robots" content="noindex,follow,noarchive,noodp">
+
+  <title>Turning CSS Carousels into a Theme Switcher</title>
+
+  <link rel="stylesheet" href="dist/reset.css">
+  <link rel="stylesheet" href="dist/reveal.css">
+  <link rel="stylesheet" href="dist/theme/white.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="plugin/highlight/styles/intellij-light.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;1,400&family=Vollkorn:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="dist/custom.css">
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+    <section data-markdown="start.md"
+             data-separator="^-----\r?\n"
+             data-separator-vertical="^---\r?\n"
+             data-separator-notes="^Note:"
+             data-charset="utf-8">
+      <!--
+          Note that Windows uses `\r\n` instead of `\n` as its linefeed character.
+          For a regex that supports all operating systems, use `\r?\n` instead of `\n`.
+      -->
+    </section>
+    <section data-markdown="presentation.md"
+             data-separator="^-----\r?\n"
+             data-separator-vertical="^---\r?\n"
+             data-separator-notes="^Note:"
+             data-charset="utf-8">
+      <!--
+          Note that Windows uses `\r\n` instead of `\n` as its linefeed character.
+          For a regex that supports all operating systems, use `\r?\n` instead of `\n`.
+      -->
+    </section>
+    <section data-markdown="end.md"
+             data-separator="^-----\r?\n"
+             data-separator-vertical="^---\r?\n"
+             data-separator-notes="^Note:"
+             data-charset="utf-8">
+      <!--
+          Note that Windows uses `\r\n` instead of `\n` as its linefeed character.
+          For a regex that supports all operating systems, use `\r?\n` instead of `\n`.
+      -->
+    </section>
+  </div>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script src="plugin/chart/chart.min.js"></script>
+<script src="plugin/chart/chart.js"></script>
+<script>
+  // More info about initialization & config:
+  // - https://revealjs.com/initialization/
+  // - https://revealjs.com/config/
+  Reveal.initialize({
+    hash: true,
+    // slideNumber: 'c/t',
+
+    // Learn about plugins: https://revealjs.com/plugins/
+    plugins: [
+      RevealMarkdown,
+      RevealHighlight,
+      RevealNotes,
+      RevealChart
+    ],
+    chart: {
+      defaults: {
+        color: '#000', // color of labels
+        scale: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 1
+          },
+          grid: {
+            color: "lightgray"
+          }, // color of grid lines
+        },
+        title: {
+          display: true
+        }
+      },
+      line: {
+        borderColor: [
+          "#92253b",
+          "#4aa9d5",
+          "#7eab45"
+        ],
+        borderDash: [
+          [0, 0],
+          [0, 0]
+        ]
+      },
+      bar: {
+        backgroundColor: [
+          "#92253b",
+          "#4aa9d5",
+          "#7eab45"
+        ]
+      },
+      pie: {
+        backgroundColor: [[
+          "#7eab45",
+          "#92253b",
+          "#4aa9d5"
+        ]]
+      },
+    },
+  });
+
+  Reveal.on('fragmentshown', function( event ) {
+    const fragmentClass = event.fragment.className;
+    const slide = event.fragment.closest('[data-fragment]');
+    const fragmentIndex = slide.getAttribute('data-fragment');
+    const video = slide.querySelector(`video[data-fragment-index="${fragmentIndex}"]`);
+
+    if (video) {
+      video.play();
+    }
+
+    if (event.fragment.classList.contains('zengarden')) {
+      const iframe = document.querySelector('.iframe-original');
+      iframe.src = './stages/original/index.html#custom-themes';
+    }
+  } );
+
+  Reveal.on('fragmenthidden', function( event ) {
+    const slide = event.fragment.closest('[data-fragment]');
+    const fragmentIndex = slide.getAttribute('data-fragment');
+    const videos = slide.querySelectorAll(`video[data-fragment-index]:not(.visible)`);
+
+    if (videos && videos.length) {
+      videos.forEach((video) => video.pause());
+    }
+
+    if (event.fragment.classList.contains('zengarden')) {
+      const iframe = document.querySelector('.iframe-original');
+      iframe.src = './stages/original/index.html#top';
+    }
+  });
+</script>
+</body>
+</html>

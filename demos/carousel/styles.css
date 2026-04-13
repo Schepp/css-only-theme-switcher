@@ -1,0 +1,192 @@
+html,
+body {
+  margin: 0;
+  font-family: 'Helvetica', Arial, sans-serif;
+}
+
+/* SCROLLER */
+/* horizontal scroll snap */
+.carousel {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
+
+  /* snap to center */
+  & li {
+    scroll-snap-align: center;
+  }
+}
+
+
+/* SCROLL BUTTONS */
+/* create buttons by selecting them and adding content */
+.carousel {
+  &::scroll-button(*) {
+    /* make them round and easy to press */
+    inline-size: 48px;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    border: 2px solid #999;
+
+    /* space from content */
+    margin: 5px;
+    cursor: pointer;
+  }
+
+  &::scroll-button(*):focus-visible {
+    outline-offset: 5px;
+  }
+
+  &::scroll-button(*):not(:disabled):is(:hover, :active) {
+    background-color: Canvas;
+  }
+
+  &::scroll-button(*):not(:disabled):active {
+    scale: 90%;
+  }
+
+  &::scroll-button(left) {
+    content: "⬅" / "Scroll Left";
+    grid-area: left; /* place markers in parent grid area */
+  }
+
+  &::scroll-button(right) {
+    content: "⮕" / "Scroll Right";
+    grid-area: right;
+  }
+}
+
+
+
+
+/* SCROLL MARKERS */
+/* create marker group */
+/* create markers for each item */
+.carousel {
+  /* create markers 'after' scroller */
+  scroll-marker-group: after;
+
+  /* create markers container and own dots layout */
+  &::scroll-marker-group {
+    grid-area: markers; /* place markers in parent grid area */
+
+    /* 15px by 15px horizontal grid - size of dots */
+    display: grid;
+    place-content: safe center;
+    grid: 30px / auto-flow 30px;
+    gap: 15px;
+    padding: 15px;
+    scroll-padding: 15px;
+
+    /* handle overflow */
+    overflow: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+
+    @media (prefers-reduced-motion: no-preference) {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* a marker for each <li> */
+  & > .content > li {
+    /* create by adding content */
+    &::scroll-marker {
+      content: " "; /* empty content is fine, just like ::before */
+
+      /* style it as you need */
+      border: 1px solid #bbb;
+      border-radius: 50%;
+      outline-offset: 4px;
+      -webkit-tap-highlight-color: transparent;
+
+      /* snap if group is overflowing */
+      scroll-snap-align: center;
+    }
+
+    &::scroll-marker:is(:hover, :focus-visible) {
+      border-color: #fff;
+    }
+
+    &::scroll-marker:target-current {
+      background: #bbb;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@layer support.demo {
+  html, body {
+    block-size: 100%;
+  }
+
+  body {
+    display: grid;
+    place-content: start center;
+    margin: 0;
+    padding: 10vmin;
+  }
+
+  .scroll-layout {
+    display: grid;
+    /*     border: 1px dashed gray; */
+
+    /* try a different layout =) */
+    grid-template-areas:
+      "left scroll right"
+      ". markers .";
+
+    /* just place items in the grid */
+    grid-template-areas:
+      "scroll scroll scroll"
+      "left markers right";
+
+    grid-template-columns: auto 1fr auto;
+
+    .carousel {
+      grid-area: scroll;
+    }
+  }
+
+  .carousel {
+    max-inline-size: 80cqi;
+    overscroll-behavior-x: contain;
+    scroll-behavior: smooth;
+  }
+
+  .content {
+    display: grid;
+    grid: 50vmin / auto-flow 50vmin;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+
+    > li {
+      list-style-type: none;
+      border: 2px solid #888;
+      border-radius: 10px;
+    }
+  }
+}
+
+:root {
+  color-scheme: light dark;
+}

@@ -1,0 +1,36 @@
+/* 
+CSS written by: Elwin Schmitz <https://elwin.nu/>
+
+Most selectors <del>y̶o̶u̶’̶l̶l̶ ̶n̶e̶e̶d̶ ̶a̶r̶e̶ ̶h̶e̶r̶e̶</del> <ins>I won't need</ins>.
+*/
+html {
+	font: 100% / 1.1667 Georgia, serif;
+}
+
+body {
+	max-width: 36em;
+	margin: auto;
+}
+
+a:link {
+	color: blue; /* How they're supposed to be. */
+}
+
+#sessions li + li {
+	margin-block-start: 1em;
+}
+#sessions li img {
+	display: block;
+	max-width: 100%; /* Don't break things */
+	height: auto;
+	width: 20em; /* Lets keep it reasonable */
+}
+
+details::details-content,
+details {
+  content-visibility: visible; /* We couldn't have nice things back then... */
+}
+summary {
+	list-style: none; /* No need for fancy interactivity. */
+	font-weight: bold; /* We need to give the people _something_  */
+}

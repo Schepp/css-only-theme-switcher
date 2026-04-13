@@ -1,0 +1,224 @@
+/* 
+Example CSS file, made by Vasilis.
+Please donâ€™t be *this* lazy.
+*/
+@import url('https://webfonts.typotheque.com/WF-023273-012632.css?1');
+
+
+
+html {
+	--whitespace: 5.5555;
+	--l: 70;
+	--c: .27;
+	--h: 20;
+	scroll-behavior: smooth;
+}
+
+body {
+	--h: 20;
+	
+	font-family: "Edge Sans 9", sans-serif;
+	font-size: clamp(1em, 3vw, 1.414em);
+	/* background: oklch( calc(var(--l) * 1%) var(--c) var(--h) ); */
+	background: black;
+	margin: 0;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: calc( var(--whitespace) * 2dvh ) min(calc( var(--whitespace) * 1.35dvh ), 12.5vw);
+	font-weight: 300;
+}
+em, header p {
+	font-style: italic; */
+}
+header p {
+	font-weight: 600;
+}
+body > * {
+	grid-column-start: 2;
+	max-width: 30em;
+	padding: calc( var(--whitespace) * 1dvmin);
+}
+body > header {
+	margin: 0;
+	--h: 240;
+	background: oklch( calc(var(--l) * 1%) var(--c) var(--h) );
+	padding: 0;
+	width: 100%;
+	box-shadow: calc( var(--whitespace) * 2dvmin) 0 0 oklch( calc(var(--l) * 1%) var(--c) var(--h) );;
+}
+main {
+	--h: 120;
+	background: oklch( calc(var(--l) * 1%) var(--c) var(--h) );
+	position: relative;
+}
+
+img {
+	width: 100%;
+}
+
+h2, h3, h4 {
+	text-wrap: balance;
+	margin: 0;
+	font-weight: normal;
+	margin-block-end: 0;
+}
+:is(h3, h4) + p {
+	margin-block-start: 0;
+}
+h3 {
+	font-size: 2em;
+	line-height: .9;
+}
+h4 {
+	font-size: 1.414em;
+}
+h1 {
+	font-family: "Irma Display Black 3", impact;
+	font-weight: normal;
+	writing-mode: sideways-lr;
+	font-size: 9.3dvh;
+	font-size: min(15.3dvw, 8.9dvh);
+	line-height: 1;
+	
+	--h: 20;
+	color: oklch( calc(var(--l) * 1%) var(--c) var(--h) );
+	position: fixed;
+	margin: 0;
+	top: 0;
+	
+	white-space: nowrap;
+	display: fled;
+	transform: translate(-.86em, 0);
+	gap: .3em;
+	
+	@media (width < 30em) {
+		font-size: min(14.9dvw, 8.9dvh);
+	}
+}
+h1 span {
+	
+	
+}
+h1 span:nth-of-type(2) {
+	
+}
+
+header p {
+	--h: 240;
+	background: oklch( calc(var(--l) * 1%) var(--c) var(--h) );
+	margin: 0;
+	position: relative;
+	width: 100%;
+	font-size: clamp( 1em, 2.5cqi, 1.414em);
+	padding: calc( var(--whitespace) * 1dvmin);
+	box-sizing: border-box;
+	width: 100%;
+}
+
+h2 {
+	margin: 0;
+	margin: calc( (var(--whitespace) * -1dvmin) - .75em) calc( var(--whitespace) * -1dvmin) 0;
+	line-height: .75;
+	font-family: "Irma Display Black 3", impact;
+	text-wrap: initial;
+	font-size: clamp(1em, 5cqi, 2em);
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	background: black;
+}
+main > h2 {
+	background: none;
+	background: linear-gradient( black, black 47% , oklch( calc(var(--l) * 1%) var(--c) var(--h) ) 47%);
+	line-height: .81;
+}
+h2::first-line {
+	color: oklch( calc(var(--l) * 1%) var(--c) var(--h) );
+	
+	
+}
+h2 + p {
+	
+}
+p {
+	text-wrap: balance;
+	text-wrap: pretty;
+}
+
+:target {
+	scroll-margin-block-start: calc( var(--whitespace) * 2vmin );
+	animation-name: highlight;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}
+@keyframes highlight {
+	0% {
+		background: transparent;
+	}
+	10% {
+		background: yellow;
+	}
+	100% {
+		background: transparent;
+	}
+}
+
+aside {
+	--h: 300;
+	background: oklch( calc(var(--l) * 1%) var(--c) var(--h) );
+}
+
+details:first-of-type {
+	margin-block-start: 1em;
+}
+
+footer {
+	--h: 200;
+	background: oklch( calc(var(--l) * 1%) var(--c) var(--h) );
+}
+
+#sessions {
+	display: none;
+}
+
+main {
+	ul {
+		display: grid;
+		grid-template-columns: 19fr 21fr;
+		margin: 0 calc( var(--whitespace) * -1dvmin);
+		padding: 0;
+		list-style: none;
+		
+	}
+	li {
+		display: flex;
+		position: relative;
+		flex-direction: column;
+		background: white;
+		border-block-end: .3em solid black;
+	}
+	li img {
+		order: -1;
+		width: 100%;
+		aspect-ratio: 1/1;
+		object-fit: cover;
+	}
+	li:nth-of-type(2n) img {
+		aspect-ratio: 21/19;
+	}
+	li a {
+		color: black;
+		font-weight: bold;
+		text-decoration: none;
+		padding: .2em;
+		word-wrap: anywhere;
+	}
+	li a::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+	}
+	li a:hover::after {
+		background: oklch(60% .2 200 / .4);
+	}
+}
