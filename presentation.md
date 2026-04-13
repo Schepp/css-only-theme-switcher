@@ -1,5 +1,7 @@
 # Turning CSS Carousels into a Theme Switcher
 
+![](./images/avatar.jpg) <!-- .element class="avatar" -->
+
 Christian "Schepp" Schaefer
 
 ---
@@ -514,6 +516,8 @@ meta::scroll-marker:target-current {
 
 The scroller should exist and work, but not visibly take up space.
 
+The scroll markers would remain fixed at the top.
+
 ```css
 head {
   margin-top: -50vh;
@@ -761,6 +765,10 @@ A theme switcher built from:
 - style queries
 
 Which is a sentence that sounds made up, but happens to be true. 😀
+
+---
+
+If you likes this…
 
 ---
 <!-- .slide: data-background-color="#fff" data-background-image="./images/fronteers-dark-mode.jpg" class="fronteers-dark-mode" -->

@@ -599,7 +599,7 @@ body:not(#specificity-increase):has(.present[data-background-color="#fff"])::aft
 }
 
 :root:not(#specificity-increase):has(.present.dark, .past.dark)::before {
-  --color-celestial-glow: #333333;
+  --color-celestial-glow: #333;
   content: 'A nighttime illustration with rolling hills, silhouetted trees, and a large glowing dark in a deep blue sky. Decorative drop caps begin the paragraphs.';
   background-image: radial-gradient(circle at 60% 60%, transparent 50%, rgba(255, 255, 255, 1) 120%),
   radial-gradient(circle at 40% 40%, transparent 50%, rgba(0, 0, 0, 1) 110%),
@@ -725,7 +725,12 @@ head::scroll-marker-group {
   display: flex;
   gap: 0.5rem;
   justify-content: center;
-  transition: top 300ms;
+  transition-property: top, opacity;
+  transition-duration: 300ms;
+
+  @starting-style {
+    opacity: 0;
+  }
 }
 
 meta::scroll-marker {
@@ -827,16 +832,20 @@ body:not(#specificity-increase#specificity-increase):has(.present.style-queries,
   }
 }
 
+:root:not(#specificity-increase#specificity-increase):has(.present.style-queries, .past.style-queries) head {
+  scroll-behavior: auto;
+}
+
 :root:not(#specificity-increase#specificity-increase):has(.present.style-queries, .past.style-queries)::before {
   @container style(--scheme: light) {
-    --color-celestial-glow: #333333;
+    --color-celestial-glow: #ffdf8d;
     content: 'A bright, stylized landscape with rolling green hills, trees, and a large light in the sky. Decorative drop caps begin the paragraphs.';
     background-image: none;
     filter: drop-shadow(0 0 2px var(--color-celestial-body));
   }
 
   @container style(--scheme: dark) {
-    --color-celestial-glow: #333333;
+    --color-celestial-glow: #333;
     content: 'A nighttime illustration with rolling hills, silhouetted trees, and a large glowing dark in a deep blue sky. Decorative drop caps begin the paragraphs.';
     background-image: radial-gradient(circle at 60% 60%, transparent 50%, rgba(255, 255, 255, 1) 120%),
     radial-gradient(circle at 40% 40%, transparent 50%, rgba(0, 0, 0, 1) 110%),
@@ -898,4 +907,11 @@ body:not(#specificity-increase#specificity-increase):has(.present.style-queries,
   display: none;
 }
 
+.avatar:not(#specificity-increase) {
+  width: 7.5vmax;
+  height: 7.5vmax;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 50%;
+}
 
