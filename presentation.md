@@ -1,4 +1,4 @@
-# Turning CSS Carousels into a Theme Switcher
+# Turning a CSS Carousel into a Theme Switcher
 
 ![](./images/avatar.jpg) <!-- .element class="avatar" -->
 
