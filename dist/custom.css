@@ -377,7 +377,7 @@ div:has(.fragment.visible.zengarden) > .iframe-original:not(#specificity-increas
   right: anchor(--iframe-original left);
   bottom: calc(anchor(--iframe-original-text-1 center) + 1px);
 
-  width: 240px;
+  width: 300px;
   margin: 0 0 0 0.1em;
   background: none;
   border: 2px solid var(--link-color);

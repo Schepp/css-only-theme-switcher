@@ -12,7 +12,7 @@ Christian "Schepp" Schaefer
 
 ### The setup
 
-<p style="width: fit-content; text-align: left; anchor-name: --iframe-original-text-1"><strong><a href="https://the-web-you-want.org">The Web You Want</a></strong> is a conference happening in Amsterdam right after Smashing Conf.</p>
+<p style="width: fit-content; text-align: left; anchor-name: --iframe-original-text-1"><strong><a href="https://the-web-you-want.org">The Web You Want</a></strong></p>
 
 <p class="fragment zengarden" style="width: fit-content; text-align: left; anchor-name: --iframe-original-text-2">
   <strong>They invited people to submit custom CSS themes</strong> - very much in the spirit of the <a href="https://csszengarden.com">CSS Zen Garden</a>
@@ -59,8 +59,8 @@ Style an existing page however you like. But:
 
 - **don’t touch the HTML**
 - **don't add JavaScript**
+- **user preferences** should be respected (**accessibility**)
 - the page content may change over time
-- user preferences should still be respected (accessibility)
 
 ---
 
@@ -212,7 +212,7 @@ From the beginning, the theme was supposed to respect:
 
 For the former two I used relative font-sizes and add `prefers-reduced-motion` media queries.
 
-Then it was time to think about the alternative color scheme…
+Then it was time to think about the **alternative color scheme**…
 
 ---
 
@@ -707,15 +707,6 @@ A theme switcher built from:
 - style queries
 
 Which is a sentence that sounds made up, but happens to be true. 😀
-
----
-
-If you enjoyed this…
-
----
-<!-- .slide: data-background-color="#fff" data-background-image="./images/fronteers-dark-mode.jpg" class="fronteers-dark-mode" -->
-
-<a href="https://fronteersconf.org" target="_blank">Fronteers Dark Mode 2026</a>
 
 ---
 
