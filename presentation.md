@@ -552,6 +552,16 @@ Because `:has()` cannot inspect pseudo-elements like `::scroll-marker`
 
 ---
 
+### Endless Loop 🔂
+
+```css
+:has(::before)::before {
+  content: normal; /* or: none */
+}
+```
+
+---
+
 ### Time for a detour
 
 If I cannot query the generated markers, maybe I can query **what the marker does**?
