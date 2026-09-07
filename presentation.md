@@ -14,6 +14,8 @@ Christian "Schepp" Schaefer
 
 <p style="width: fit-content; text-align: left; anchor-name: --iframe-original-text-1"><strong><a href="https://the-web-you-want.org">The Web You Want</a></strong></p>
 
+<p style="width: fit-content; text-align: left">A conference about the web.</p>
+
 <p class="fragment zengarden" style="width: fit-content; text-align: left; anchor-name: --iframe-original-text-2">
   <strong>They invited people to submit custom CSS themes</strong> - very much in the spirit of the <a href="https://csszengarden.com">CSS Zen Garden</a>
 </p>
@@ -176,7 +178,7 @@ html::after {
 
 <li class="fragment light">
   <div style="anchor-name: --light">
-    a stylized light ☀️via <code>body::before</code>
+    a stylized sun☀️via <code>body::before</code>
   </div>
 
   <div style="position: absolute; top: 80%; right: 0; height: auto; max-width: 50%; max-height: none; anchor-name: --light-code">
@@ -555,8 +557,12 @@ Because `:has()` cannot inspect pseudo-elements like `::scroll-marker`
 ### Endless Loop 🔂
 
 ```css
-:has(::before)::before {
-  content: normal; /* or: none */
+div::before {
+  content: 'hello';
+}
+
+div:has(::before)::before {
+  content: none;
 }
 ```
 
@@ -580,7 +586,7 @@ Enter **Scroll Driven Animations API**. ✨
 
 ### Turning scroll position into an animation timeline
 
-I promoted the `head` to a **scroll timeline** which can be used to drive CSS animations.
+I promoted the `<head>` to a **scroll timeline** which can be used to drive CSS animations via scroll position.
 
 ```css
 head {
@@ -595,7 +601,7 @@ head {
 
 By default, only descendants can use a scroll timeline to drive CSS animations.
 
-I needed the whole document to see it, so I moved its scope to `html`
+I needed the whole document to see it, so I moved its scope up to `<html>`
 
 ```css
 html {
